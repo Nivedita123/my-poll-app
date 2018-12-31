@@ -60,7 +60,9 @@ export class UserService {
 
     let userRef: AngularFireList<any>;
 
+    return of ();
 
+/*
     userRef = this.db.list("users").query;
 
     return 
@@ -75,7 +77,7 @@ export class UserService {
           console.log(user);  
           return user;
         }
-      )
+      )*/
     }
 
   /**
