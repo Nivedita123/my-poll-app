@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-8">
+    <div class="border p-3 m-5"> 
+
+      <div class="mb-5 mt-3 pb-3 text-center border-bottom">
+        <h4> New User Registeration </h4>
+      </div>
+
+      <form [formGroup]="newUserForm" (ngSubmit)="registerUser()">
+
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-info btn-block"> Join now! </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

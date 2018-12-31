@@ -1,0 +1,56 @@
+<div class="mt-5">
+  <div class="card mb-4" *ngFor = 'let poll of polls$'>
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-sm-8">
+          <h4 class="card-title"> {{poll.desc}} </h4>
+          <div class="card-text">
+            <ul class="list-group mt-3 mb-4">
+              <li class="list-group-item pl-4" *ngFor = 'let option of poll.options'>
+
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="customRadio1" name="example" value="customEx">
+                      <label class="custom-control-label" for="customRadio1">{{option.desc}}</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <span class="float-right">
+                        <span *ngIf="option.voters">{{option.voters.length}}</span> 
+                        <span *ngIf="option.voters == null">0</span> 
+                      votes
+                    </span>
+                  </div>
+                </div>
+
+              </li>
+              
+            </ul>
+            <p class="card-text" *ngIf="poll.time">
+              Posted on : {{poll.time.seconds * 1000 | date:'MMM dd, yyyy h:mm a' }}
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-sm-1">
+        </div>
+
+        <div class="col-sm-3">
+          Posted by :
+          <a href="#" class="card-link" *ngIf="poll.user" routerLink="/profile/{{poll.user.id}}">
+            <span *ngIf="poll.user.firstName">{{poll.user.firstName}}</span>
+            <span *ngIf="poll.user.lastName"> {{poll.user.lastName}}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+</div>
