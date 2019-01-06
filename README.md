@@ -1,4 +1,4 @@
-# Angular 7 - Poll App
+# Angular 7 - Poll App (Work in progress)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
