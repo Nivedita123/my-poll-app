@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Globals } from 'src/app/globals';
 
-
+declare var require: any;
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
 
-    var require: any;
     var md5 = require('md5');
     this.newUserForm.value.password = md5(this.newUserForm.value.password);
 

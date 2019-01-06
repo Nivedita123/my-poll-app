@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user.model';
-import { tap } from 'rxjs/operators';
 import { Globals } from 'src/app/globals';
 
+declare var require: any;
 
 @Component({
   selector: 'app-login',
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
 
-    var require: any;
     var md5 = require('md5');
     
     this.us.getUserByEmail(this.existingUserForm.value.email).subscribe(
