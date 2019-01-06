@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
 
+    var require: any;
     var md5 = require('md5');
     this.newUserForm.value.password = md5(this.newUserForm.value.password);
 

@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
 
+    var require: any;
     var md5 = require('md5');
     
     this.us.getUserByEmail(this.existingUserForm.value.email).subscribe(
