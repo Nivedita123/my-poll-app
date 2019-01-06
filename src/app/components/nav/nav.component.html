@@ -4,13 +4,14 @@
     <a class="navbar-brand" routerLink="/">Poll App</a>
 
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
-      <a class="nav-item nav-link" routerLink="/register">Register</a>
 
-      <a class="nav-item nav-link" routerLink="/feed"> Feed </a>
-      <a class="nav-item nav-link" routerLink="/create-poll"> Create new Poll </a>
-      <a class="nav-item nav-link" routerLink="/profile"> Nivedita </a>
-      <a class="nav-item nav-link" routerLink="/"> Log out </a>
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ == null" routerLink="/login">Login</a>
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ == null" routerLink="/register">Register</a>
+
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ != null" routerLink="/create-poll"> New Poll </a>
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ != null" routerLink="/feed"> Feed </a>
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ != null" routerLink="/profile/{{this.globals.currentUser$.id}}"> {{this.globals.currentUser$.firstName}} </a>
+      <a class="nav-item nav-link" *ngIf = "this.globals.currentUser$ != null" routerLink="/"> Log out </a>
     </div>
   </div>
 

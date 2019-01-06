@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { tap } from 'rxjs/operators';
+import { Globals } from 'src/app/globals';
 
 
 @Component({
@@ -13,13 +14,14 @@ import { tap } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   public existingUserForm: FormGroup;
-
   public errMsg$: string;
 
   constructor(
     public fb: FormBuilder,
-    public us: UserService
-  ) { }
+    public us: UserService,
+    public globals: Globals
+  ) { 
+  }
 
   ngOnInit() {
 
@@ -31,14 +33,17 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
 
+    var md5 = require('md5');
+    
     this.us.getUserByEmail(this.existingUserForm.value.email).subscribe(
       user => {
         if (user) {
 
           // pwd matches
-          if (user.password == this.existingUserForm.value.password) {
+          if (user.password == md5(this.existingUserForm.value.password)) {
 
             this.errMsg$ = "Login success";
+            this.globals.currentUser$ = user;
           }
           else {
             this.errMsg$ = "Incorrect password";

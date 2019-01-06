@@ -25,7 +25,9 @@
         <div class="form-group">
           <button type="submit" class="btn btn-info btn-block"> Join now! </button>
         </div>
-
+        <div class="text-danger" *ngIf = "errorMsg$">{{errorMsg$}}</div>
+        <div class="text-success" *ngIf = "successMsg$">{{successMsg$}}</div>
+        
       </form>
     </div>
   </div>

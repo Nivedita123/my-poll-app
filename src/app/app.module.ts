@@ -19,6 +19,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { DocPipe } from './doc.pipe';
+import { Globals } from './globals';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { DocPipe } from './doc.pipe';
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
