@@ -37,6 +37,8 @@ export class PollService {
           let poll = pollDoc.data();
           poll.id = pollDoc.id;
 
+         // console.log(poll);
+
           // fetch details of user who posted the poll
           if (poll.user) {
 
@@ -54,7 +56,7 @@ export class PollService {
                     poll.options[i].get().then(optionDoc => {
 
                       poll.options[i] = optionDoc.data() as Option;
-                      poll.options[i].id = optionDoc.id;
+                      poll.options[i].id = optionDoc.id;;
 
                       // fetch the voters of the options
                       if (poll.options[i].voters) {
@@ -65,23 +67,23 @@ export class PollService {
 
                             poll.options[i].voters[j] = voterDoc.data() as User;
                             poll.options[i].voters[j].id = voterDoc.id;
-
+  
                             // add during last iteration of voter
                             if (j == poll.options[i].voters.length - 1 && !added) {
 
                               polls.push(poll as Poll);
                               added = true;
-                              console.log("added");
+                              console.log("added 1");
                             }
                           })
                         }
                       }
                       // no voters, add during last itration of option
                       else {
-                        if (!added && i == poll.options[i].length - 1) {
+                        if (!added) {
                           polls.push(poll as Poll);
                           added = true;
-                          console.log("added");
+                          console.log("added 2");
                         }
                       }
                     })
@@ -90,7 +92,7 @@ export class PollService {
                 else {
                   polls.push(poll as Poll);
                   added = true;
-                  console.log("added");
+                  console.log("added 3");
                 }
               })
               .catch(err => console.error(err));
@@ -98,7 +100,7 @@ export class PollService {
           else {
             polls.push(poll as Poll);
             added = true;
-            console.log("added");
+            console.log("added 4");
           }
         });
       })

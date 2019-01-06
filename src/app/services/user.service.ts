@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, QueryDocumentSnapshot, CollectionReference, Query } from '@angular/fire/firestore';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -49,50 +51,37 @@ export class UserService {
   }
 
   /**
-   * get user with given email, if not return false
+   * get user with given email, if not return null
    * 
    * @param email email to fetch
    */
   getUserByEmail(email: string): Observable<User> {
 
-    let user: User;
+    console.log("kk");
+    return this.firestore.collection<User>('users', ref => ref.where('email', 
+    '==', email))
+      .snapshotChanges()
+      .pipe(map(users => {
 
-
-    let userRef: AngularFireList<any>;
-
-    return of ();
-
-/*
-    userRef = this.db.list("users").query;
-
-    return 
-      .valueChanges<User>().forEach(
-        item => {
-
-          if (item.length != 0) {
-
-            user = (item[0].payload.doc.data()) as User;
-            user.id = item[0].payload.doc.id
-          }
-          console.log(user);  
-          return user;
+        console.log(users);
+        
+        const user = users[0];
+        if (user) {
+          const data = user.payload.doc.data() as User;
+          const id = user.payload.doc.id;
+          return { id, ...data };
         }
-      )*/
-    }
+        else {
+          return null;
+        }
+      }));
 
-  /**
-   * Update user Object
-   * @param user 
-   */
+  }
+
   UpdateUser(user: User) {
 
   }
 
-  /**
-   * delete a user's account
-   * 
-   * @param id user id to delete
-   */
   DeleteUser(id: string) {
 
   }

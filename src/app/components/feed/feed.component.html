@@ -5,7 +5,7 @@
       <div class="row">
 
         <div class="col-sm-8">
-          <h4 class="card-title"> {{poll.desc}} </h4>
+          <h5 class="card-title"> {{poll.desc}} </h5>
           <div class="card-text">
             <ul class="list-group mt-3 mb-4">
               <li class="list-group-item pl-4" *ngFor = 'let option of poll.options'>
@@ -13,8 +13,8 @@
                 <div class="row">
                   <div class="col-sm-10">
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="customRadio1" name="example" value="customEx">
-                      <label class="custom-control-label" for="customRadio1">{{option.desc}}</label>
+                      <input type="radio" class="custom-control-input" [disabled]="option.currentUserVoted" (click)="submitPoll(poll,option)"  id="{{option.id}}" name="{{poll.id}}" value="customEx">
+                      <label class="custom-control-label" for="{{option.id}}">{{option.desc}}</label>
                     </div>
                   </div>
                   <div class="col-sm-2">

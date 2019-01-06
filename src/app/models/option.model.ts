@@ -4,5 +4,6 @@ export interface Option {
 
     id: string,
     desc: string,
-    voters: User[]
+    voters: User[],
+    currentUserVoted: boolean
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import { tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -30,12 +32,7 @@ export class LoginComponent implements OnInit {
   loginUser() {
 
     this.us.getUserByEmail(this.existingUserForm.value.email).subscribe(
-      
       user => {
-
-        console.log("here");
-        console.log(user);
-        // user with email found
         if (user) {
 
           // pwd matches
@@ -50,7 +47,25 @@ export class LoginComponent implements OnInit {
         else {
           this.errMsg$ = "User with this email does not exist!";
         }
-      }
-    );
+      });
+
   }
 }
+
+
+/**
+ * if (user) {
+
+          // pwd matches
+          if (user.password == this.existingUserForm.value.password) {
+
+            this.errMsg$ = "Login success";
+          }
+          else {
+            this.errMsg$ = "Incorrect password";
+          }
+        }
+        else {
+          this.errMsg$ = "User with this email does not exist!";
+        }
+ */
